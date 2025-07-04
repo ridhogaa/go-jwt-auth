@@ -1,1 +1,11 @@
+# Ignore environment variables file
 .env
+
+# Go-specific
+*.log
+*.test
+*.exe
+*.out
+coverage.out
+coverprofile.out
+go.sum.bak
