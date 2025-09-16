@@ -1,0 +1,33 @@
+@PORT=8080
+@HOST=localhost
+@token=Bearer
+
+###
+POST http://{{HOST}}:{{PORT}}/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+###
+POST http://{{HOST}}:{{PORT}}/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+
+> {%
+    console.log("Raw response:", response.body);
+    client.global.set("authToken", "Bearer " + response.body.token)
+    console.log(client.global.get("authToken"))
+%}
+
+###
+GET http://{{HOST}}:{{PORT}}/protected
+Content-Type: application/json
+Authorization: {{authToken}}
